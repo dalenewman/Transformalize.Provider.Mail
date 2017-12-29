@@ -1,0 +1,22 @@
+<cfg name="Mail">
+
+    <connections>
+        <add name="input" provider="internal" />
+        <add name="output" provider="mail" server="mail.mwf.local" port="25" />
+    </connections>
+
+    <entities>
+        <add name="Messages" >
+            <rows>
+                <add To="dnewman@scope-services.com" From="noreply@scope-services.com" Subject="Test" Body="I am a test." />
+            </rows>
+            <fields>
+                <add name="To" />
+                <add name="From" />
+                <add name="Subject" />
+                <add name="Body" />
+            </fields>
+        </add>
+    </entities>
+
+</cfg>

@@ -1,0 +1,5 @@
+2017-12-29 14:33:38 | error | Process |  |  |  | There is an invalid entities in rows.
+2017-12-29 14:33:38 | error | Process |  |  |  | The configuration errors must be fixed before this job will run.
+2017-12-29 14:34:16 | warn  | Mail | Messages |             |          | An internal row in Messages is missing the field From.
+2017-12-29 14:34:16 | error | Mail |          |             |          | Object reference not set to an instance of an object.
+2017-12-29 14:34:44 | error | Mail |          |             |          | Object reference not set to an instance of an object.
