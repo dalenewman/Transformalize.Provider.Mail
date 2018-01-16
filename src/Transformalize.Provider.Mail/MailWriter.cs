@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Transformalize.Context;
 using Transformalize.Contracts;
@@ -39,7 +40,8 @@ namespace Transformalize.Providers.Mail {
                 // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect(_context.Connection.Server, _context.Connection.Port, false);
+                client.Connect(_context.Connection.Server, _context.Connection.Port, _context.Connection.UseSsl);
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
                 if (_context.Connection.User != string.Empty) {
@@ -52,10 +54,22 @@ namespace Transformalize.Providers.Mail {
                     foreach (var field in _fields) {
                         switch (field.Alias.ToLower()) {
                             case "to":
-                                message.To.Add(new MailboxAddress(row[field].ToString()));
+                                foreach (var to in GetAddresses(row, field)) {
+                                    message.To.Add(new MailboxAddress(to));
+                                }
                                 break;
                             case "from":
                                 message.From.Add(new MailboxAddress(row[field].ToString()));
+                                break;
+                            case "cc":
+                                foreach (var cc in GetAddresses(row, field)) {
+                                    message.Cc.Add(new MailboxAddress(cc));
+                                }
+                                break;
+                            case "bcc":
+                                foreach (var bcc in GetAddresses(row, field)) {
+                                    message.Bcc.Add(new MailboxAddress(bcc));
+                                }
                                 break;
                             case "subject":
                                 message.Subject = row[field].ToString();
@@ -78,5 +92,18 @@ namespace Transformalize.Providers.Mail {
                 client.Disconnect(true);
             }
         }
+
+        private IEnumerable<string> GetAddresses(IRow row, IField field) {
+            var value = row[field].ToString();
+            if (value == string.Empty) {
+                return new string[0];
+            }
+
+            if (value.Contains(',')) {
+                return value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            return value.Contains(';') ? value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries) : new[] { value };
+        }
+
     }
 }
