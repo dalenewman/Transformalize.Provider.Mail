@@ -8,7 +8,7 @@ gmail SSL (smtp.gmail.com:465) with *allow less secure apps* on.
 
     <connections>
         <add name="input" provider="internal" />
-        <add name="output" provider="mail" server="mail.dail.local" port="25" />
+        <add name="output" provider="mail" server="smtp.gmail.com" port="465" useSsl='true' />
     </connections>
 
     <entities>
@@ -32,5 +32,3 @@ gmail SSL (smtp.gmail.com:465) with *allow less secure apps* on.
 
 Saving this as *email.xml* and running should send the message.  When using a mail 
 output, your entity must have `from`, `to`, and `body` fields.
-
-This provider will be available as a plugin for Transformalize 0.2.11-beta.
