@@ -16,11 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{2C691590
 		nuget\Transformalize.Provider.Mail.nuspec = nuget\Transformalize.Provider.Mail.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformalize.Provider.Mail", "src\Transformalize.Provider.Mail\Transformalize.Provider.Mail.csproj", "{9AB7A3F4-3C58-4885-B4EC-084E4A4EC4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transformalize.Provider.Mail", "src\Transformalize.Provider.Mail\Transformalize.Provider.Mail.csproj", "{9AB7A3F4-3C58-4885-B4EC-084E4A4EC4FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformalize.Provider.Mail.Autofac", "src\Transformalize.Provider.Mail.Autofac\Transformalize.Provider.Mail.Autofac.csproj", "{85FB674B-D932-450E-8DAE-D60B6ADDF185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transformalize.Provider.Mail.Autofac", "src\Transformalize.Provider.Mail.Autofac\Transformalize.Provider.Mail.Autofac.csproj", "{85FB674B-D932-450E-8DAE-D60B6ADDF185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration.Test", "src\Integration.Test\Integration.Test.csproj", "{4CE14C7C-3A87-48E3-88E7-BA0F61CAC6A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration.Test", "src\Integration.Test\Integration.Test.csproj", "{4CE14C7C-3A87-48E3-88E7-BA0F61CAC6A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

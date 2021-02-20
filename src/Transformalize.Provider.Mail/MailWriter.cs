@@ -16,10 +16,13 @@
 // limitations under the License.
 #endregion
 
+using MailKit.Security;
 using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using Transformalize.Configuration;
 using Transformalize.Context;
 using Transformalize.Contracts;
@@ -55,13 +58,18 @@ namespace Transformalize.Providers.Mail {
 
          using (var client = new MailKit.Net.Smtp.SmtpClient()) {
 
-            // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-            client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+            client.ServerCertificateValidationCallback = CertificateValidationCallback;
 
-            client.Connect(_context.Connection.Server, _context.Connection.Port, _context.Connection.UseSsl);
-            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            var options = SecureSocketOptions.Auto;
 
-            // Note: only needed if the SMTP server requires authentication
+            if (_context.Connection.StartTls) {
+               options = SecureSocketOptions.StartTls;
+            } else if (_context.Connection.UseSsl) {
+               options = SecureSocketOptions.SslOnConnect;
+            }
+
+            client.Connect(_context.Connection.Server, _context.Connection.Port, options);
+
             if (_context.Connection.User != string.Empty) {
                client.Authenticate(_context.Connection.User, _context.Connection.Password);
             }
@@ -121,6 +129,33 @@ namespace Transformalize.Providers.Mail {
             return value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
          }
          return value.Contains(';') ? value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries) : new[] { value };
+      }
+
+      /// <summary>
+      /// adapted from OrchardCore
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="certificate"></param>
+      /// <param name="chain"></param>
+      /// <param name="sslPolicyErrors"></param>
+      /// <returns></returns>
+      private bool CertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+         if (sslPolicyErrors == SslPolicyErrors.None)
+            return true;
+
+         _context.Error(string.Concat("SMTP Server's certificate {CertificateSubject} issued by {CertificateIssuer} ",
+             "with thumbprint {CertificateThumbprint} and expiration date {CertificateExpirationDate} ",
+             "is considered invalid with {SslPolicyErrors} policy errors"),
+             certificate.Subject, certificate.Issuer, certificate.GetCertHashString(),
+             certificate.GetExpirationDateString(), sslPolicyErrors);
+
+         if (sslPolicyErrors.HasFlag(SslPolicyErrors.RemoteCertificateChainErrors) && chain?.ChainStatus != null) {
+            foreach (var chainStatus in chain.ChainStatus) {
+               _context.Error("Status: {Status} - {StatusInformation}", chainStatus.Status, chainStatus.StatusInformation);
+            }
+         }
+
+         return false;
       }
 
    }
