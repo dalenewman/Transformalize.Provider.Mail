@@ -6,7 +6,8 @@ using Transformalize.Contracts;
 using Transformalize.Providers.Console;
 using Transformalize.Providers.Mail.Autofac;
 
-namespace IntegrationTests {
+namespace Integration.Test {
+
    [TestClass]
    public class UnitTest1 {
 
