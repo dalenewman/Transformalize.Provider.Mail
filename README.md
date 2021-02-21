@@ -1,14 +1,11 @@
-This is a mail (output) provider for [Transformalize](https://github.com/dalenewman/Transformalize). It uses [MailKit](https://github.com/jstedfast/MailKit).
+This is a .NET Standard mail (output) provider for [Transformalize](https://github.com/dalenewman/Transformalize). It uses [MailKit](https://github.com/jstedfast/MailKit).
  
-I've only tested messages using a local mail relay server and 
-gmail SSL (smtp.gmail.com:465) with *allow less secure apps* on. 
-
 ```xml
 <cfg name="Mail">
 
     <connections>
         <add name="input" provider="internal" />
-        <add name="output" provider="mail" server="smtp.gmail.com" port="465" useSsl='true' />
+        <add name="output" provider="mail" server="smtp.gmail.com" port="465" useSsl='true' user='*' password='*' />
     </connections>
 
     <entities>
@@ -20,7 +17,7 @@ gmail SSL (smtp.gmail.com:465) with *allow less secure apps* on.
                 <add name="From" />
                 <add name="To" />
                 <add name="Cc" />
-                <add name="Ncc" />
+                <add name="Bcc" />
                 <add name="Subject" />
                 <add name="Body" />
             </fields>
@@ -32,3 +29,9 @@ gmail SSL (smtp.gmail.com:465) with *allow less secure apps* on.
 
 Saving this as *email.xml* and running should send the message.  When using a mail 
 output, your entity must have `from`, `to`, and `body` fields.
+
+This has been tested using
+
+- a local mail relay server
+- sendgrid with `port="587" startTls="true" user="apikey" password="the actual key"`.
+- gmail with `port="465" useSsl="true"` and Google settings *allow less secure apps* on.
