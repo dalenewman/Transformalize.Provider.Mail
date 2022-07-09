@@ -81,20 +81,21 @@ namespace Transformalize.Providers.Mail {
                   switch (field.Alias.ToLower()) {
                      case "to":
                         foreach (var to in GetAddresses(row, field)) {
-                           message.To.Add(new MailboxAddress(to));
+                           message.To.Add(new MailboxAddress(to, to));
                         }
                         break;
                      case "from":
-                        message.From.Add(new MailboxAddress(row[field].ToString()));
+                        var from = row[field].ToString();
+                        message.From.Add(new MailboxAddress(from, from));
                         break;
                      case "cc":
                         foreach (var cc in GetAddresses(row, field)) {
-                           message.Cc.Add(new MailboxAddress(cc));
+                           message.Cc.Add(new MailboxAddress(cc, cc));
                         }
                         break;
                      case "bcc":
                         foreach (var bcc in GetAddresses(row, field)) {
-                           message.Bcc.Add(new MailboxAddress(bcc));
+                           message.Bcc.Add(new MailboxAddress(bcc, bcc));
                         }
                         break;
                      case "subject":
