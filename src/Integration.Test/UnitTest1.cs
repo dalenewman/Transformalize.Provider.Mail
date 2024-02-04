@@ -11,20 +11,25 @@ namespace Integration.Test {
    [TestClass]
    public class UnitTest1 {
 
-      [Ignore("it's a pain to test this")]
       [TestMethod]
       public void TestWrite() {
-         const string xml = @"<cfg name='Mail'>
+
+         // get temp credentials from https://mailtrap.io
+         const string tempUsername = "11111111111111";
+         const string tempPassword = "11111111111111";
+         const string fromTo = "youremailaddress@gmail.com";
+
+         const string xml = $@"<cfg name='Mail'>
 
     <connections>
         <add name='input' provider='internal' />
-        <add name='output' provider='mail' server='*' port='*' />
+        <add name='output' provider='mail' server='sandbox.smtp.mailtrap.io' port='465' user='{tempUsername}' password='{tempPassword}' startTls='true' />
     </connections>
 
     <entities>
         <add name='Messages'>
             <rows>
-                <add From='*' To='*' Cc='' Bcc='' Subject='Test' Body='I am a test message.' />
+                <add From='{fromTo}' To='{fromTo}' Cc='' Bcc='' Subject='Test' Body='I am a test message via mailtrap.' />
             </rows>
             <fields>
                 <add name='From' />

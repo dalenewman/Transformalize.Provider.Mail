@@ -3,12 +3,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Transformalize.Provider.Mail</AssemblyName>
     <RootNamespace>Transformalize.Providers.Mail</RootNamespace>
-    <Version>0.10.1-beta</Version>
-    <FileVersion>0.10.1</FileVersion>
-    <AssemblyVersion>0.10.1</AssemblyVersion>
+    <Version>0.10.2-beta</Version>
+    <FileVersion>0.10.2</FileVersion>
+    <AssemblyVersion>0.10.2</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="3.3.0" />
-    <PackageReference Include="Transformalize" Version="0.10.1-beta" />
+    <PackageReference Include="MailKit" Version="4.3.0" />
+    <PackageReference Include="Transformalize" Version="0.10.12-beta" />
   </ItemGroup>
 </Project>

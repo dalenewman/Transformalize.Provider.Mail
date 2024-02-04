@@ -33,5 +33,6 @@ output, your entity must have `from`, `to`, and `body` fields.
 This has been tested using
 
 - a local mail relay server
+- [mailtrap.io](https://mailtrap.io)
 - sendgrid with `port="587" startTls="true" user="apikey" password="the actual key"`.
 - gmail with `port="465" useSsl="true"` and Google settings *allow less secure apps* on.

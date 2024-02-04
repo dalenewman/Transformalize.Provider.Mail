@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.Mail.Autofac</id>
-    <version>0.10.1-beta</version>
+    <version>0.10.2-beta</version>
     <title>Transformalize Provider Mail Autofac Module</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -10,13 +10,13 @@
     <projectUrl>https://github.com/dalenewman/Transformalize</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>basic mail module, just output for now</description>
-    <releaseNotes>gen maint</releaseNotes>
-    <copyright>Copyright © 2017-2022</copyright>
+    <releaseNotes>maintenance</releaseNotes>
+    <copyright>Copyright © 2017-2024</copyright>
     <tags>etl</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-        <dependency id="Transformalize.Provider.Mail" version="0.10.1-beta" />
-        <dependency id="Transformalize.Container.Autofac" version="0.10.0-beta" />
+        <dependency id="Transformalize.Provider.Mail" version="0.10.2-beta" />
+        <dependency id="Transformalize.Container.Autofac" version="0.10.12-beta" />
       </group>
     </dependencies>
   </metadata>

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.Mail</id>
-    <version>0.10.1-beta</version>
+    <version>0.10.2-beta</version>
     <title>Transformalize Provider Mail</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -10,13 +10,13 @@
     <projectUrl>https://github.com/dalenewman/Transformalize</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Mail provider for Transformalize</description>
-    <releaseNotes>gen maint</releaseNotes>
-    <copyright>Copyright © 2017-2022</copyright>
+    <releaseNotes>maintenance</releaseNotes>
+    <copyright>Copyright © 2017-2024</copyright>
     <tags>etl</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-        <dependency id="Transformalize" version="0.10.1-beta" />
-        <dependency id="MailKit" version="3.3.0" />
+        <dependency id="Transformalize" version="0.10.12-beta" />
+        <dependency id="MailKit" version="4.3.0" />
       </group>
     </dependencies>
   </metadata>
