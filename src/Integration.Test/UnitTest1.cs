@@ -16,8 +16,8 @@ namespace Integration.Test {
 
          // get temp credentials from https://mailtrap.io
          const string tempUsername = "11111111111111";
-         const string tempPassword = "11111111111111";
-         const string fromTo = "youremailaddress@gmail.com";
+         const string tempPassword = "22222222222222";
+         const string fromTo = "you@gmail.com";
 
          const string xml = $@"<cfg name='Mail'>
 
@@ -29,7 +29,7 @@ namespace Integration.Test {
     <entities>
         <add name='Messages'>
             <rows>
-                <add From='{fromTo}' To='{fromTo}' Cc='' Bcc='' Subject='Test' Body='I am a test message via mailtrap.' />
+                <add From='{fromTo}' To='{fromTo}' Cc='' Bcc='' Subject='Test Message' Body='I am a test message via mailtrap.' />
             </rows>
             <fields>
                 <add name='From' />
